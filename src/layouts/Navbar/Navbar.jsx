@@ -48,6 +48,8 @@ function Navbar({ tab, setTab }) {
                 onClick={() => setTab('user')}
               >
                 User
+
+            <button className='btn btn-outline-danger' style={{marginLeft:'1rem'}} onClick={()=>{setToken('')}}></button>
               </NavLink>
             </li>
           </ul>

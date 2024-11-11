@@ -10,12 +10,13 @@ import List from "./pages/List"; // Ensure this import exists
 
 const intTab = "home";
 
-function App() {
+function App( ) {
   const [token, setToken] = useState("");
+  const [role, setRole] = useState("");
   const [tab, setTab] = useState(intTab); // Initialize with intTab
 
   if (token === "") {
-    return <Login />;
+    return <Login setToken={setToken} setRole={setRole} />;
   } else {
     return (
       <div>
