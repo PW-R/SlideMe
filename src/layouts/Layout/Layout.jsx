@@ -1,18 +1,18 @@
 
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Navbar from './Navbar'; // Import the Navbar component
-import Header from './Header'; // Import the Header component
-import Footer from './Footer'; // Import the Footer component
-import './Layout.css'; // Assuming you have CSS for Layout
+import Navbar from './Navbar'; 
+import Header from './Header'; 
+import Footer from './Footer'; 
+import './Layout.css'; 
 
 const Layout = ({ tab, setTab }) => {
   return (
     <div>
-      <Header />  {/* Include Header */}
-      <Navbar tab={tab} setTab={setTab} /> {/* Include Navbar */}
-      <Outlet />  {/* Render nested routes */}
-      <Footer />  {/* Include Footer */}
+      <Header />  
+      <Navbar tab={tab} setTab={setTab} /> 
+      <Outlet />  
+      <Footer />  
     </div>
   );
 }
