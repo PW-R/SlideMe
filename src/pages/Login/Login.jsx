@@ -24,24 +24,24 @@ function Login({ setToken ,setRole}) {
         ref={passRef}
       />
       <button
-        className="btn btn-success mt-3"
-        onClick={() => {
-          const user = userRef.current.value.trim();
-          const pass = passRef.current.value.trim();
-          userRef, (current.value = "");
-          passRef.current.value = "";
-          const userInfo = verifyUser(user, pass);
-          if (userInfo === null) {
-            alert("Wrong user or password");
-            userRef.current.focus();
-          } else {
-            setToken(userInfo.token);
-            setRole(userInfo.role);
-          }
-        }}
-      >
-        Login
-      </button>
+  className="btn btn-success mt-3"
+  onClick={() => {
+    const user = userRef.current.value.trim();
+    const pass = passRef.current.value.trim();
+    userRef.current.value = ""; // Fix here
+    passRef.current.value = "";
+    const userInfo = verifyUser(user, pass);
+    if (userInfo === null) {
+      alert("Wrong user or password");
+      userRef.current.focus();
+    } else {
+      setToken(userInfo.token);
+      setRole(userInfo.role);
+    }
+  }}
+>
+  Login
+</button>
     </div>
   );
 }

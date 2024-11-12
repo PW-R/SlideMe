@@ -1,17 +1,15 @@
-
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Navbar from './Navbar'; 
-import Header from './Header'; 
-import Footer from './Footer'; 
-import './Layout.css'; 
+import Navbar from "../Navbar/Navbar";  // Adjust the path to match the folder structure
+import Header from '../Header/Header'; 
+import Footer from '../Footer/Footer'; 
+import './Layout.css';  // Keep your styles here
 
 const Layout = ({ tab, setTab }) => {
   return (
     <div>
       <Header />  
       <Navbar tab={tab} setTab={setTab} /> 
-      <Outlet />  
       <Footer />  
     </div>
   );
