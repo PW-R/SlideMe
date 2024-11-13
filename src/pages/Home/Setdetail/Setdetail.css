@@ -1,0 +1,26 @@
+.setdetail-page {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .location-button-container {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .location-btn {
+    margin-left: 10px;
+    white-space: nowrap;
+  }
+  
+  .save-btn, .back-btn {
+    margin-top: 20px;
+    margin-right: 10px;
+  }
+  
+  .back-btn {
+    margin-top: 20px;
+  }
+  

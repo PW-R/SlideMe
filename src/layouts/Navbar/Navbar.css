@@ -1,0 +1,44 @@
+.navbar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0; /* Remove space between buttons to connect their borders */
+    margin-top: 20px;
+  }
+  
+  .navbar-container .btn {
+    border-radius: 0; /* Remove rounding for a seamless look */
+    margin: 0;
+    padding: 10px 20px;
+    border: 1px solid #28a745; /* Green border color */
+    color: #28a745; /* Green text color */
+    background-color: white;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .navbar-container .btn:first-child {
+    border-radius: 5px 0 0 5px; /* Rounded corners for first button */
+  }
+  
+  .navbar-container .btn:last-child {
+    border-radius: 0 5px 5px 0; /* Rounded corners for last button */
+  }
+  
+  .navbar-container .btn-primary {
+    background-color: #28a745; /* Green background color */
+    color: white;
+    border-color: #28a745;
+  }
+  
+  .navbar-container .btn-outline-primary {
+    background-color: white;
+    color: #28a745;
+  }
+  
+  .navbar-container .btn:hover {
+    background-color: #218838; /* Darker green for hover effect */
+    color: white;
+  }
+  

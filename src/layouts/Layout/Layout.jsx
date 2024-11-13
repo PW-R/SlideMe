@@ -10,6 +10,7 @@ const Layout = ({ tab, setTab }) => {
     <div>
       <Header />  
       <Navbar tab={tab} setTab={setTab} /> 
+      <Outlet />
       <Footer />  
     </div>
   );

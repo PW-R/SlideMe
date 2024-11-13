@@ -1,0 +1,28 @@
+/* Payment.css */
+
+.payment-page {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .card {
+    margin-top: 20px;
+  }
+  
+  button {
+    margin-top: 20px;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  h3 {
+    font-size: 2rem;
+  }
+  
+  h5 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+  

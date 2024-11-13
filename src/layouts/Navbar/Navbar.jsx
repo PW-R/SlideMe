@@ -25,6 +25,28 @@ function Navbar({ tab, setTab }) {
           List
         </button>
       </Link>
+
+      <Link to="/notification"> {/* Added Link import */}
+        <button
+          className={
+            "btn " + (tab === "notification" ? "btn-primary" : "btn-outline-primary")
+          }
+          onClick={() => setTab("notification")}
+        >
+          Notification
+        </button>
+      </Link>
+
+      <Link to="/User"> {/* Added Link import */}
+        <button
+          className={
+            "btn " + (tab === "user" ? "btn-primary" : "btn-outline-primary")
+          }
+          onClick={() => setTab("User")}
+        >
+          User
+        </button>
+      </Link>
     </div>
   );
 }

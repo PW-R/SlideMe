@@ -5,8 +5,12 @@ import { useEffect, useState } from "react";
 import { HashRouter, Route, Routes, Navigate } from "react-router-dom";
 import Layout from "./layouts/Layout/Layout.jsx";
 import Home from "./pages/Home/Home.jsx";
-import User from "./pages/User/User.jsx";
+import SetDetail from './pages/Home/Setdetail/Setdetail'; // Update import path
+import Callstatus from './pages/Home/Callstatus/Callstatus';
+import Payment from "./pages/Home/Payment/Payment"; // Import Payment page
 import List from "./pages/List/List.jsx";
+import Notification from "./pages/Notification/Notification.jsx";
+import User from "./pages/User/User.jsx";
 import Login from "./pages/Login/Login";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -43,7 +47,11 @@ function App() {
             <Route element={<Layout tab={tab} setTab={setTab} />}>
               <Route path="/" element={<Home />} />
               <Route path="/home" element={<Home />} />
+              <Route path="/setdetail" element={<SetDetail />} /> {/* Updated route */}
+              <Route path="/callstatus" element={<Callstatus />} />
+              <Route path="/payment" element={<Payment />} />
               <Route path="/list" element={<List />} />
+              <Route path="/notification" element={<Notification />} />
               <Route path="/user" element={<User />} />
               <Route path="/login" element={<Navigate to="/home" />} /> {/* Redirect if logged in */}
             </Route>
