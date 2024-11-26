@@ -1,0 +1,11 @@
+/* src/pages/User/Register.css */
+
+.container {
+    max-width: 600px;
+    margin-top: 50px;
+  }
+  
+  .form-control {
+    margin-bottom: 10px;
+  }
+  

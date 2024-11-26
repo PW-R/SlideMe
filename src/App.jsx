@@ -5,20 +5,21 @@ import { useEffect, useState } from "react";
 import { HashRouter, Route, Routes, Navigate } from "react-router-dom";
 import Layout from "./layouts/Layout/Layout.jsx";
 import Home from "./pages/Home/Home.jsx";
-import SetDetail from './pages/Home/Setdetail/Setdetail'; // Updated import path
+import SetDetail from './pages/Home/Setdetail/Setdetail';
 import Callstatus from './pages/Home/Callstatus/Callstatus';
-import Payment from "./pages/Home/Payment/Payment"; // Import Payment page
+import Payment from "./pages/Home/Payment/Payment";
 import List from "./pages/List/List.jsx";
 import Notification from "./pages/Notification/Notification.jsx";
 import User from "./pages/User/User.jsx";
-import Setuserinfo from './pages/User/Setuserinfo/Setuserinfo'; // Corrected import path
+import Setuserinfo from './pages/User/Setuserinfo/Setuserinfo';
 import Login from "./pages/Login/Login";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import UserOrDriver from "./pages/Login/UserOrDriver";
+import Register from "./pages/User/Register"; // Import the Register page
 
 const intTab = "home";
 
 function App() {
-  const [token, setToken] = useState("1");
+  const [token, setToken] = useState("");
   const [role, setRole] = useState("");
   const [tab, setTab] = useState(intTab);
 
@@ -38,30 +39,44 @@ function App() {
     localStorage.setItem("role", newRole);
   };
 
-  if (!token) {
-    return <Login setToken={handleLogin} setRole={setRole} />;
-  } else {
-    return (
-      <div>
-        <HashRouter>
-          <Routes>
-            <Route element={<Layout tab={tab} setTab={setTab} />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="/setdetail" element={<SetDetail />} />
-              <Route path="/callstatus" element={<Callstatus />} />
-              <Route path="/payment" element={<Payment />} />
-              <Route path="/list" element={<List />} />
-              <Route path="/notification" element={<Notification />} />
-              <Route path="/user" element={<User />} />
-              <Route path="/setuserinfo" element={<Setuserinfo />} /> {/* Corrected route */}
-              <Route path="/login" element={<Navigate to="/home" />} /> {/* Redirect if logged in */}
-            </Route>
-          </Routes>
-        </HashRouter>
-      </div>
-    );
-  }
+  const handleLogout = () => {
+    setToken(""); // Clear the token
+    setRole(""); // Clear the role
+    localStorage.removeItem("token"); // Remove token from localStorage
+    localStorage.removeItem("role"); // Remove role from localStorage
+  };
+
+  return (
+    <HashRouter>
+      <Routes>
+        {/* Routes for Public Access (Login, Register, UserOrDriver) */}
+        {!token ? (
+          <>
+            <Route path="/" element={<UserOrDriver />} />
+            <Route path="/login/:role" element={<Login setToken={handleLogin} setRole={setRole} />} />
+            <Route path="/register" element={<Register />} /> {/* Register Page */}
+          </>
+        ) : (
+          /* Routes for Authenticated Users (Inside Layout) */
+          <Route path="/" element={<Layout tab={tab} setTab={setTab} />}>
+            <Route path="/home" element={<Home />} />
+            <Route path="/setdetail" element={<SetDetail />} />
+            <Route path="/callstatus" element={<Callstatus />} />
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/list" element={<List />} />
+            <Route path="/notification" element={<Notification />} />
+            <Route
+              path="/user"
+              element={<User setToken={setToken} setRole={setRole} handleLogout={handleLogout} />} // Pass logout function
+            />
+            <Route path="/setuserinfo" element={<Setuserinfo />} />
+            {/* Redirect to Home if logged in */}
+            <Route path="/" element={<Navigate to="/home" />} />
+          </Route>
+        )}
+      </Routes>
+    </HashRouter>
+  );
 }
 
 export default App;
