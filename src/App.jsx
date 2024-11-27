@@ -19,8 +19,8 @@ import Register from "./pages/User/Register"; // Import the Register page
 const intTab = "home";
 
 function App() {
-  const [token, setToken] = useState("");
-  const [role, setRole] = useState("");
+  const [token, setToken] = useState(null); // Start with null for token
+  const [role, setRole] = useState(null); // Start with null for role
   const [tab, setTab] = useState(intTab);
 
   useEffect(() => {
@@ -40,8 +40,8 @@ function App() {
   };
 
   const handleLogout = () => {
-    setToken(""); // Clear the token
-    setRole(""); // Clear the role
+    setToken(null); // Clear the token
+    setRole(null); // Clear the role
     localStorage.removeItem("token"); // Remove token from localStorage
     localStorage.removeItem("role"); // Remove role from localStorage
   };
@@ -67,13 +67,15 @@ function App() {
             <Route path="/notification" element={<Notification />} />
             <Route
               path="/user"
-              element={<User setToken={setToken} setRole={setRole} handleLogout={handleLogout} />} // Pass logout function
+              element={<User handleLogout={handleLogout} />} // Pass logout function
             />
             <Route path="/setuserinfo" element={<Setuserinfo />} />
             {/* Redirect to Home if logged in */}
             <Route path="/" element={<Navigate to="/home" />} />
           </Route>
         )}
+        {/* Fallback Redirect if no matching route is found */}
+        <Route path="*" element={<Navigate to={token ? "/home" : "/"} />} />
       </Routes>
     </HashRouter>
   );
