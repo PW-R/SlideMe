@@ -7,13 +7,7 @@ function UserOrDriver() {
 
   // Handle navigation based on the role
   const handleLoginTypeSelection = (role) => {
-    if (role === 'driver') {
-      // For driver, navigate to the external URL
-      window.location.href = "https://pw-r.github.io/Slideme-Fang-Bua/";
-    } else {
-      // For user, navigate to the login page for users
-      navigate(`/login/${role}`);
-    }
+    navigate(`/login/${role}`);
   };
 
   return (
