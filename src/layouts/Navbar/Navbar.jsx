@@ -1,54 +1,55 @@
-import { Link } from "react-router-dom"; // Import Link
-import "./Navbar.css";
+import { useState } from "react";
+import { Link } from 'react-router-dom';
+import './navbar.css';
 
-function Navbar({ tab, setTab }) {
-  return (
-    <div className="navbar-container">
-      <Link to="/home"> {/* Added Link import */}
-        <button
-          className={
-            "btn " + (tab === "home" ? "btn-primary" : "btn-outline-primary")
-          }
-          onClick={() => setTab("home")}
-        >
-          Home
-        </button>
-      </Link>
+function Navbar() {
+    const [tab, setTab] = useState('homepage'); // Default tab can be 'homepage'
 
-      <Link to="/list"> {/* Added Link import */}
-        <button
-          className={
-            "btn " + (tab === "list" ? "btn-primary" : "btn-outline-primary")
-          }
-          onClick={() => setTab("list")}
-        >
-          List
-        </button>
-      </Link>
+    const handleClick = (newTab) => {
+        if (tab !== newTab) {
+            setTab(newTab); // Update tab only if it's different from the current one
+        }
+    };
 
-      <Link to="/notification"> {/* Added Link import */}
-        <button
-          className={
-            "btn " + (tab === "notification" ? "btn-primary" : "btn-outline-primary")
-          }
-          onClick={() => setTab("notification")}
-        >
-          Notification
-        </button>
-      </Link>
+    return ( 
+        <div className="navbar-container">
+            <Link to='/homepage'>
+                <button 
+                    className={'btn ' + (tab === 'homepage' ? 'btn-primary' : 'btn-outline-primary')}
+                    onClick={() => handleClick('homepage')}
+                >
+                    Home
+                </button>
+            </Link>
 
-      <Link to="/User"> {/* Added Link import */}
-        <button
-          className={
-            "btn " + (tab === "user" ? "btn-primary" : "btn-outline-primary")
-          }
-          onClick={() => setTab("User")}
-        >
-          User
-        </button>
-      </Link>
-    </div>
-  );
+            <Link to='/menu'>
+                <button 
+                    className={'btn ' + (tab === 'menu' ? 'btn-primary' : 'btn-outline-primary')}
+                    onClick={() => handleClick('menu')}
+                >
+                    Menu
+                </button>
+            </Link>
+
+            <Link to='/home/call'>
+                <button 
+                    className={'btn ' + (tab === 'call' ? 'btn-primary' : 'btn-outline-primary')}
+                    onClick={() => handleClick('call')}
+                >
+                    Noti
+                </button>
+            </Link>
+
+            <Link to='/created_position'>
+                <button 
+                    className={'btn ' + (tab === 'created_position' ? 'btn-primary' : 'btn-outline-primary')}
+                    onClick={() => handleClick('created_position')}
+                >
+                    User
+                </button>
+            </Link>
+        </div>
+    );
 }
 
 export default Navbar;

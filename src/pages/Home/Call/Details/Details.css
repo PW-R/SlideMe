@@ -1,0 +1,90 @@
+.details-container {
+    width: auto;
+    height: auto;
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+.details-location-container {
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+    grid-gap: 1rem;
+    margin: 0 1.5rem 0rem 1.5rem;
+}
+
+.details-tab {
+    height: auto;
+    position: relative;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    margin: 0 1.5rem 0.5rem 1.5rem;
+}
+
+.details-details-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    margin-left: 3rem;
+}
+
+.details-details-2 p {
+    font-size: 16px;
+    margin: 0;
+    line-height: 1;
+}
+
+.details-details-2 i {
+    font-size: 20px;
+    padding-right: 10px;
+}
+
+.details-car {
+    margin-top: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+.car2-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80px;
+    height: 40px;
+    padding-left: 2.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.car2-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.car2-info p {
+    font-size: 16px;
+    color: #647A75;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.details-button {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.details-button button {
+    width: 120px;
+    height: 28px;
+    border-color: #0dc964;
+    background-color: #0dc964;
+    border-radius: 50px;
+    font-size: 16px;
+    padding: 0;
+    color: white;
+}

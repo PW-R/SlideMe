@@ -7,8 +7,15 @@ import './UserOrDriver.css'; // Create this CSS file for styling
 function UserOrDriver() {
   const navigate = useNavigate();
 
+  // Handle navigation based on the role
   const handleLoginTypeSelection = (role) => {
-    navigate(`/login/${role}`);
+    if (role === 'driver') {
+      // For driver, navigate to the external URL
+      window.location.href = "https://pw-r.github.io/Slideme-Fang-Bua/";
+    } else {
+      // For user, navigate to the login page for users
+      navigate(`/login/${role}`);
+    }
   };
 
   return (

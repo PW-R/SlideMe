@@ -1,0 +1,67 @@
+@import "@fontsource/ibm-plex-sans"; /* Default weights and styles */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Prompt:wght@200;400&display=swap');
+
+body {
+  font-family: 'IBM Plex Sans Thai', sans-serif !important;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+}
+
+/* Root Variables for Font */
+:root {
+  --bs-font-sans-serif: 'IBM Plex Sans', sans-serif;
+}
+
+/* General Body Container */
+.body-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Main App Container Styling */
+.app-container {
+  width: 402px; /* Fixed width for mobile display */
+  height: 874px; /* Fixed height for mobile display */
+  max-width: 100%; /* Responsive for smaller screens */
+  max-height: 100%;
+  border: 1px solid #ccc;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  position: relative;
+  background-color: #ffffff;
+}
+
+/* Common Title Styling */
+.title, .title-map {
+  position: relative;
+  background-color: #0dc964;
+  box-shadow: 0 0 10px rgba(150, 150, 150, 0.5); /* Use RGBA for subtle shadow */
+  height: 125px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 1rem;
+  border-radius: 0 0 1rem 1rem;
+  z-index: 3000;
+}
+
+.title h1, .title-map h1 {
+  font-size: 36px;
+  font-weight: 400;
+  margin: 0;
+  color: #ffffff;
+}
+
+/* Icon Positioning for Titles */
+.title i, .title-map i {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 24px;
+  color: #ffffff;
+}

@@ -1,0 +1,45 @@
+.saved-tab {
+    width: auto;
+    text-align: center;
+
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr;
+    grid-gap: 10px;
+    
+    margin-bottom: 2.5rem;
+}
+
+.s-profile-driver {
+    position: relative;
+    display: inline-block;
+}
+
+.s-profile-driver img {
+    width: 70px; 
+    height: 70px;
+}
+
+.s-profile-driver i {
+    position: absolute;
+    bottom: 40px;
+    left: 55px;
+    font-size: 23px;
+    border-radius: 50%;
+    color: #FFC30F;
+}
+
+.book-again{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    text-decoration: none;
+}
+
+.book-again p {
+    font-size: 12px;
+    text-align: right;
+    margin: 0;
+    padding-right: 0.5rem;
+    font-weight: bold;
+    color: #004AAD;
+}

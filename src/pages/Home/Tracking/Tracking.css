@@ -1,0 +1,139 @@
+.tracking-map {
+  flex-grow: 1;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  top: 100px;
+  flex-grow: 1;
+}
+
+.tracking-tab {
+  background-color: rgb(255, 255, 255);
+  border-radius: 2rem 2rem 0 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 320px;
+  z-index: 1000;
+  padding: 1rem;
+  overflow-y: auto;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+  z-index: 5000;
+}
+
+.tracking-details {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.tracking-details-2 {
+  margin: 1.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.tracking-details-2 h3 {
+  font-weight: bold;
+}
+
+.tracking-details-2 p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.tracking-details-2 i {
+  font-size: 25px;
+  padding-right: 10px;
+}
+
+.tracking-car {
+  margin: 1.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.car-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.car-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.car-info p {
+  color: #647A75;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.line-tracking {
+  border-top: 2px solid #757575;
+  width: 100%;
+  margin: 0;
+}
+
+.tracking-driver {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr 1fr;
+  margin: 0 0 0.5rem 0;
+  justify-items: center;
+  align-items: center;
+}
+
+.driver-profile img {
+  width: 60px;
+  height: 60px;
+}
+
+.driver-info {
+  padding-left: 10px;
+  text-align: left;
+  justify-self: start;
+}
+
+.driver-info p {
+  font-weight: bold;
+  margin: 10px;
+  line-height: 1;
+}
+
+.driver-info i {
+  color: #FFC30F;
+  padding-right: 5px;
+}
+
+.driver-2button button {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  border: none;
+  background-color: #60B876;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.driver-button i {
+  color: #377B48;
+}
+
+.tracking-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tracking-button button {
+  width: 10rem;
+  border-color: #0dc964;
+  background-color: #0dc964;
+  border-radius: 50px;
+  margin: 0.5rem;
+  font-size: 16px;
+  color: white;
+}
