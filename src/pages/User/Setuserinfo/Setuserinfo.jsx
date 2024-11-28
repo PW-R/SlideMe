@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Form, Button, Card, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './Setuserinfo.css';
@@ -11,44 +11,20 @@ const Setuserinfo = () => {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  // Fetch user info from localStorage when the component mounts
-  useEffect(() => {
-    const savedUsername = localStorage.getItem('username');
-    const savedPhoneNumber = localStorage.getItem('phoneNumber');
-    const savedEmail = localStorage.getItem('email');
-    const savedPassword = localStorage.getItem('password');
-
-    if (savedUsername) setUsername(savedUsername);
-    if (savedPhoneNumber) setPhoneNumber(savedPhoneNumber);
-    if (savedEmail) setEmail(savedEmail);
-    if (savedPassword) setPassword(savedPassword);
-  }, []);
-
   // Handle form submission
   const handleSave = (e) => {
     e.preventDefault();
 
-    // If username is not provided, set it to phoneNumber
-    const finalUsername = username || phoneNumber;
-
-    if (!finalUsername || !phoneNumber || !email || !password) {
+    if (!username || !phoneNumber || !email || !password) {
       setErrorMessage('All fields must be filled out.');
       return;
     }
 
     setErrorMessage('');
-
-    // Save updated information to localStorage
-    localStorage.setItem('username', finalUsername);
-    localStorage.setItem('phoneNumber', phoneNumber);
-    localStorage.setItem('email', email);
-    localStorage.setItem('password', password);
-
-    // Optionally, you can update the state to reflect the changes in the app
-    console.log('User Info Saved:', { finalUsername, phoneNumber, email, password });
+    console.log('User Info Saved:', { username, phoneNumber, email, password });
 
     // Navigate back to the User page after saving
-    navigate('/user');  // Navigate to the User page
+    navigate('/');  // Navigate to the root or User page
   };
 
   return (
@@ -64,6 +40,7 @@ const Setuserinfo = () => {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              required
               placeholder="Enter your username"
             />
           </Form.Group>

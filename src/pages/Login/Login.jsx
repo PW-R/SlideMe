@@ -8,13 +8,26 @@ function Login({ setToken, setRole }) {
   const { role } = useParams(); // Get the role (user or driver) from the URL
   const userRef = useRef();
   const passRef = useRef();
-  const otpRef = useRef();
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState(""); // To manage error message
 
   const [errorMessage, setErrorMessage] = useState(""); // Manage error messages
   const [isOtpSent, setIsOtpSent] = useState(false); // Track if OTP is sent
   const [generatedOtp, setGeneratedOtp] = useState(""); // Store generated OTP
 
+  // Define the verifyUser function
+  const verifyUser = (phoneNumber, password) => {
+    const users = [
+      { phoneNumber: "0808107819", password: "32", token: "userToken", role: "user" },
+      { phoneNumber: "9876543210", password: "driver123", token: "driverToken", role: "driver" }
+    ];
+
+    const user = users.find(
+      (user) => user.phoneNumber === phoneNumber && user.password === password && user.role === role
+    );
+
+    return user ? user : null;
+  };
   // Define mock user data for demonstration purposes
   const users = [
     { phoneNumber: "0808107819", password: "32", token: "userToken", role: "user" },
@@ -34,7 +47,11 @@ function Login({ setToken, setRole }) {
     e.preventDefault();
     const phoneNumber = userRef.current.value.trim();
     const password = passRef.current.value.trim();
+    userRef.current.value = ""; // Clear input fields
+    passRef.current.value = "";
 
+    const userInfo = verifyUser(phoneNumber, password);
+    if (userInfo === null) {
     const userInfo = users.find(
       (user) =>
         user.phoneNumber === phoneNumber &&
@@ -44,28 +61,34 @@ function Login({ setToken, setRole }) {
 
     if (!userInfo) {
       setErrorMessage("Wrong phone number or password");
-      return;
+      userRef.current.focus();
+    } else {
+      setErrorMessage(""); // Clear error message
+      setToken(userInfo.token);
+      setRole(userInfo.role);
+      // Save token and role in localStorage for persistence
+      localStorage.setItem("token", userInfo.token);
+      localStorage.setItem("role", userInfo.role);
+      navigate(userInfo.role === "user" ? "/home" : "/driver-dashboard");
     }
-
-    if (!isOtpSent) {
-      setErrorMessage("Please request OTP first.");
-      return;
-    }
-
-    if (!verifyOtp(otpRef.current.value.trim())) {
-      setErrorMessage("Invalid OTP. Please try again.");
-      return;
-    }
-
-    setErrorMessage(""); // Clear errors on successful login
-    setToken(userInfo.token);
-    setRole(userInfo.role);
-    localStorage.setItem("token", userInfo.token);
-    localStorage.setItem("role", userInfo.role);
-    navigate(userInfo.role === "user" ? "/home" : "/driver-dashboard");
   };
 
   return (
+    <Container className="py-5">
+      <Row className="justify-content-center">
+        <Col md={6}>
+          <h3>{role === "user" ? "User Login" : "Driver Login"}</h3>
+          {errorMessage && <div className="alert alert-danger">{errorMessage}</div>} {/* Error Message Display */}
+          <Form onSubmit={handleLogin}>
+            <Form.Group controlId="phoneNumber">
+              <Form.Label>Phone Number</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter phone number"
+                ref={userRef}
+                required
+              />
+            </Form.Group>
     <Container className="login-container text-center py-5">
       <img src={slidemelogo} alt="Slide Me Logo" className="logo" />
       <h3 className="mt-3">{role === "user" ? "User Login" : "Driver Login"}</h3>
@@ -76,6 +99,15 @@ function Login({ setToken, setRole }) {
           <Form.Control type="text" placeholder="Enter phone number" ref={userRef} required />
         </Form.Group>
 
+            <Form.Group controlId="password" className="mt-3">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Enter password"
+                ref={passRef}
+                required
+              />
+            </Form.Group>
         <Form.Group controlId="password" className="mt-3">
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" placeholder="Enter password" ref={passRef} required />

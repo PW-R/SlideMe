@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card, Button, Row, Col, Container } from "react-bootstrap";
 import { FaUser, FaCreditCard, FaMapPin } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
@@ -7,31 +7,9 @@ import "./User.css";
 const User = ({ setToken, setRole, handleLogout }) => {
   const navigate = useNavigate(); // Initialize navigate hook
 
-  // Fetch user info from localStorage
-  const phoneNumber = localStorage.getItem("phoneNumber") || "123-456-7890"; // Default phone number if not set
-  const username = localStorage.getItem("username") || phoneNumber; // Default username to phone number
-  const email = localStorage.getItem("email") || "johndoe@example.com"; // Default email if not set
-
-  // State to manage the profile picture
-  const [profilePic, setProfilePic] = useState(localStorage.getItem("profilePic") || "https://via.placeholder.com/150");
-
-  // Handle the logout and navigate to the "Choose User or Driver" page
   const handleLogoutAndNavigate = () => {
     handleLogout(); // Call the logout function
-    navigate("/choose"); // Navigate to the "UserOrDriver" page
-  };
-
-  // Handle image upload
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setProfilePic(reader.result);
-        localStorage.setItem("profilePic", reader.result); // Save the selected image to localStorage
-      };
-      reader.readAsDataURL(file); // Convert the file to a base64 string
-    }
+    navigate("/login/user"); // Navigate to the login page for users, change this to your login path
   };
 
   return (
@@ -43,22 +21,14 @@ const User = ({ setToken, setRole, handleLogout }) => {
               <Card.Body className="text-center">
                 {/* Profile Picture Section */}
                 <img
-                  src={profilePic} // Display the selected profile picture
+                  src="https://via.placeholder.com/150" // Placeholder profile picture
                   alt="User Profile"
                   className="profile-pic mb-3"
-                  style={{ width: "150px", height: "150px", borderRadius: "50%", cursor: "pointer" }}
-                  onClick={() => document.getElementById("fileInput").click()} // Trigger file input when the image is clicked
+                  style={{ width: "150px", height: "150px", borderRadius: "50%" }}
                 />
-                <input
-                  id="fileInput"
-                  type="file"
-                  accept="image/*"
-                  style={{ display: "none" }} // Hide the file input
-                  onChange={handleImageChange} // Handle image change
-                />
-                <h4>{username}</h4> {/* Display the username */}
-                <p>{email}</p>
-                <p>{phoneNumber}</p>
+                <h4>John Doe</h4>
+                <p>johndoe@example.com</p>
+                <p>123-456-7890</p>
               </Card.Body>
             </Card>
           </Col>

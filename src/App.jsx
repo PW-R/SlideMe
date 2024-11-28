@@ -23,9 +23,9 @@ import { PositionProvider } from "./data/PositionContext";
 const initialTab = "home";  // Define your initial tab
 
 function App() {
-  const [token, setToken] = useState(null);  // Start with null for token
-  const [role, setRole] = useState(null);  // Start with null for role
-  const [tab, setTab] = useState(initialTab);
+  const [token, setToken] = useState("");
+  const [role, setRole] = useState("");
+  const [tab, setTab] = useState(intTab);
 
   // Get token and role from localStorage on initial load
   useEffect(() => {
@@ -47,54 +47,42 @@ function App() {
 
   // Function to handle logout, clearing token and role from state and localStorage
   const handleLogout = () => {
-    setToken(null);
-    setRole(null);
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
+    setToken(""); // Clear the token
+    setRole(""); // Clear the role
+    localStorage.removeItem("token"); // Remove token from localStorage
+    localStorage.removeItem("role"); // Remove role from localStorage
   };
 
   return (
-    <PositionProvider>  {/* Wrap everything with PositionProvider to access context */}
-      <HashRouter>
-        <Routes>
-          {/* Public Routes (Login, Register, UserOrDriver) */}
-          {!token ? (
-            <>
-              <Route path="/" element={<UserOrDriver />} />
-              <Route
-                path="/login/:role"
-                element={<Login setToken={handleLogin} setRole={setRole} />}
-              />
-              <Route path="/register" element={<Register />} />{" "}
-              {/* Register Page */}
-            </>
-          ) : (
-            /* Authenticated Routes (Inside Layout) */
-            <Route path="/" element={<Layout tab={tab} setTab={setTab} />}>
-              <Route path="/home" element={<Home />} />
-              <Route path="/setdetail" element={<SetDetail />} />
-              <Route path="/callstatus" element={<Callstatus />} />
-              <Route path="/payment" element={<Payment />} />
-              <Route path="/list" element={<List />} />
-              <Route path="/notification" element={<Notification />} />
-              <Route path="/search" element={<Search />} />
-              <Route path="/call" element={<Call />} />
-              <Route path="/map" element={<MapPage />} />
-              <Route
-                path="/user"
-                element={<User handleLogout={handleLogout} />} // Pass logout function
-              />
-              <Route path="/setuserinfo" element={<Setuserinfo />} />
-              {/* Redirect to Home if logged in */}
-              <Route path="/" element={<Navigate to="/home" />} />
-            </Route>
-          )}
-
-          {/* Fallback Redirect if no matching route is found */}
-          <Route path="*" element={<Navigate to={token ? "/home" : "/"} />} />
-        </Routes>
-      </HashRouter>
-    </PositionProvider>
+    <HashRouter>
+      <Routes>
+        {/* Routes for Public Access (Login, Register, UserOrDriver) */}
+        {!token ? (
+          <>
+            <Route path="/" element={<UserOrDriver />} />
+            <Route path="/login/:role" element={<Login setToken={handleLogin} setRole={setRole} />} />
+            <Route path="/register" element={<Register />} /> {/* Register Page */}
+          </>
+        ) : (
+          /* Routes for Authenticated Users (Inside Layout) */
+          <Route path="/" element={<Layout tab={tab} setTab={setTab} />}>
+            <Route path="/home" element={<Home />} />
+            <Route path="/setdetail" element={<SetDetail />} />
+            <Route path="/callstatus" element={<Callstatus />} />
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/list" element={<List />} />
+            <Route path="/notification" element={<Notification />} />
+            <Route
+              path="/user"
+              element={<User setToken={setToken} setRole={setRole} handleLogout={handleLogout} />} // Pass logout function
+            />
+            <Route path="/setuserinfo" element={<Setuserinfo />} />
+            {/* Redirect to Home if logged in */}
+            <Route path="/" element={<Navigate to="/home" />} />
+          </Route>
+        )}
+      </Routes>
+    </HashRouter>
   );
 }
 
