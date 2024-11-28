@@ -1,5 +1,49 @@
-.login-container{
-    text-align: center;
-    width: 200px;
-    margin: 2rem auto;
-}
+/* Login.css */
+
+.login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  h3 {
+    color: #28a745;
+    font-weight: bold;
+  }
+  
+  .alert {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  .mt-3 {
+    margin-top: 15px !important;
+  }
+  
+  .w-100 {
+    width: 100% !important;
+  }
+  
+  button {
+    font-size: 16px;
+    padding: 10px 0;
+  }
+  
+  .link {
+    color: #28a745;
+    text-decoration: none;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+  }
+  

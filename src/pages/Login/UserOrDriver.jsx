@@ -1,36 +1,36 @@
 import React from 'react';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import slidemelogo from '../../assets/png/slidemelogo.png'; // Adjust the path if necessary
+import './UserOrDriver.css'; // Create this CSS file for styling
 
 function UserOrDriver() {
   const navigate = useNavigate();
 
   const handleLoginTypeSelection = (role) => {
-    // Navigate to the login page with the selected role
     navigate(`/login/${role}`);
   };
 
   return (
-    <Container className="py-5">
-      <Row className="justify-content-center">
+    <Container className="choose-container text-center py-5">
+      <img src={slidemelogo} alt="Slide Me Logo" className="logo" />
+      <h3 className="mt-3">Are You User or Driver?</h3>
+      <Row className="justify-content-center mt-4">
         <Col md={6}>
-          <div className="text-center">
-            <h3>Select Login Type</h3>
-            <Button
-              variant="outline-primary"
-              onClick={() => handleLoginTypeSelection('user')}
-              className="w-100 mb-3"
-            >
-              User Login
-            </Button>
-            <Button
-              variant="outline-secondary"
-              onClick={() => handleLoginTypeSelection('driver')}
-              className="w-100"
-            >
-              Driver Login
-            </Button>
-          </div>
+          <Button
+            variant="outline-success"
+            className="w-100 mb-3"
+            onClick={() => handleLoginTypeSelection('user')}
+          >
+            User
+          </Button>
+          <Button
+            variant="outline-primary"
+            className="w-100"
+            onClick={() => handleLoginTypeSelection('driver')}
+          >
+            Driver
+          </Button>
         </Col>
       </Row>
     </Container>
